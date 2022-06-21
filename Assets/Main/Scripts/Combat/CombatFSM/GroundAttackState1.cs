@@ -9,16 +9,17 @@ public class GroundAttackState1 : MeleeBaseState
         base.OnEnter(_stateMachine);
         attackIndex = 1;
         attackType = "Ground";
-        duration = 0.5f;
-        comboFramesOpen = 0.35f;
-        comboFramesStop = 0.55f;
+        duration = 0.6f;
+        comboFramesOpen = duration-0.25f;
+        comboFramesStop = duration+0.15f;
         animator.SetTrigger($"Attack{attackType}{attackIndex}");
-        Debug.Log($"Player Attack{attackType}{attackIndex} fired!");
+        //Debug.Log($"Player Attack{attackType}{attackIndex} fired!");
         
     }
     public override void OnUpdate()
     {
         base.OnUpdate();
+        /*
         if (time < comboFramesOpen + 0.02f && time > comboFramesOpen - 0.02f)
         {
             Debug.Log("Combo frame open");
@@ -27,7 +28,7 @@ public class GroundAttackState1 : MeleeBaseState
         if (time < comboFramesStop + 0.02f && time > comboFramesStop - 0.02f)
         {
             Debug.Log("Combo frame stop");
-        }
+        }*/
 
         if (time > duration && time < comboFramesStop && shouldCombo)
         {

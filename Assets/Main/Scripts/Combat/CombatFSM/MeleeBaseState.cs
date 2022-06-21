@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeBaseState : State
+public /*abstract*/ class MeleeBaseState : State
 {
     protected Animator animator;
     protected bool shouldCombo;
@@ -24,6 +24,7 @@ public class MeleeBaseState : State
             playerInput = InputManager.playerInput;
         }
         playerInput.Melee.Attack.performed += Combo;
+        playerInput.Moving.Disable();
     }
 
     protected void Combo(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -34,14 +35,31 @@ public class MeleeBaseState : State
         }
     }
     
+    protected void StopCombo(UnityEngine.InputSystem.InputAction.CallbackContext callback)
+    {
+        shouldCombo = false;
+        playerInput.Melee.Attack.performed -= Combo;
+        stateMachine.SetNextStateToMain();
+    }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
+        if (time > duration && !shouldCombo)
+        {
+            playerInput.Moving.Enable();
+            playerInput.Moving.Move.performed += StopCombo;
+            playerInput.Moving.Jump.performed += StopCombo;
+            playerInput.Melee.Dash.performed += StopCombo;
+        }
     }
 
     public override void OnExit()
     {
         base.OnExit();
+        playerInput.Moving.Enable();
+        playerInput.Moving.Move.performed -= StopCombo;
+        playerInput.Moving.Jump.performed -= StopCombo;
+        playerInput.Melee.Dash.performed -= StopCombo;
     }
 }

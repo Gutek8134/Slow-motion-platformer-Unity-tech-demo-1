@@ -21,10 +21,10 @@ public class ComboCharacter : MonoBehaviour
 
     private void Attack_performed(InputAction.CallbackContext context)
     {
-        Debug.Log("Attack performed");
+        //Debug.Log("Attack performed");
         if(stateMachine.CurrentState.GetType() == typeof(IdleCombatState))
         {
-            Debug.Log("Setting next state");
+            //Debug.Log("Setting next state");
             stateMachine.SetNextState(new MeleeEntryState());
         }
     }
