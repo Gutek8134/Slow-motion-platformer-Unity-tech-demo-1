@@ -27,8 +27,9 @@ public class SidescrollerController : KinematicObject
     public Bounds Bounds => collider2d.bounds;
     private MainInputActions playerInput;
 
-    void Awake()
+    protected override void Start()
     {
+        base.Start();
         collider2d = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();

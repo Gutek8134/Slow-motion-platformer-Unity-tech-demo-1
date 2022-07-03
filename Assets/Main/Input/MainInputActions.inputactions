@@ -251,15 +251,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "RangedIn",
-                    "type": "Button",
-                    "id": "c46e221e-072d-442e-9ccc-cd201ee32348",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -306,28 +297,6 @@
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "30459ec2-73e5-42d1-826f-4ff608a5c0be",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "RangedIn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "75446228-cf8d-4787-a248-0f5172f0c2f3",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "RangedIn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -345,15 +314,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RangedOut",
-                    "type": "Button",
-                    "id": "ebcf6916-f404-4fc0-a7ce-b44f77e419f6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "RangedOutPause",
                     "type": "Button",
                     "id": "ede14665-af97-4742-8428-b243ab8b4e6c",
@@ -361,6 +321,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ShotDirectionM",
+                    "type": "Value",
+                    "id": "32a6aff3-3d17-454c-a3a3-250c7ea97ce9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ShotDirectionG",
+                    "type": "Value",
+                    "id": "d307d43d-9d6f-488e-b339-073bf1f1e931",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -388,23 +366,23 @@
                 },
                 {
                     "name": "",
-                    "id": "c0023618-a5c3-41a6-82de-23410c977265",
-                    "path": "<Mouse>/rightButton",
+                    "id": "35efdcc3-a3e1-4a01-92a3-28117d6aa99f",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "RangedOut",
+                    "action": "ShotDirectionM",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5d0c4c40-065c-4a42-8402-7255595f62ff",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "dbbb3e32-5204-470a-a842-3ed10520fdff",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "RangedOut",
+                    "action": "ShotDirectionG",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -427,6 +405,76 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "RangedOutPause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "AlwaysActive",
+            "id": "808441f4-d4ec-4860-9148-71d2f5b4ed82",
+            "actions": [
+                {
+                    "name": "RangedModeSwitch",
+                    "type": "Button",
+                    "id": "e18c0074-9a72-43fb-b393-851b6ec17b61",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeScheme",
+                    "type": "Button",
+                    "id": "29409c0d-b4f0-4068-8687-6b9496bb9837",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4a993285-faca-43f8-aece-81e2b8123adf",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RangedModeSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd18d45b-4066-4950-9878-2eceec2bee24",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "RangedModeSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db752c43-6db2-4b65-8e9f-47dc9118433c",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ChangeScheme",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7bfe33aa-1503-4278-899e-15feb90cdb56",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "ChangeScheme",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

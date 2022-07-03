@@ -6,9 +6,9 @@ Day 1:
 2. Add basic movement using the new input system (because I'd have to learn it someday anyway) - Done (though it was mostly copied from Sidescroller, oh, well)
 
 Day 2:
-1. Add static "enemy", baically training dummy
+1. Add static "enemy", baically training dummy - Done
 2. Add combat:
-a. melee - it just has to work
+a. melee - it just has to work - Done
 b. ranged - when entering target mode, slow time down (good luck with that one)
 
 Day 3:

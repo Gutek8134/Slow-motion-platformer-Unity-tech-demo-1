@@ -7,8 +7,12 @@ public /*abstract*/ class MeleeBaseState : State
     protected Animator animator;
     protected bool shouldCombo;
 
+    protected Stats playerStats;
+
     public float duration;
     public float comboFramesOpen, comboFramesStop;
+    protected Collider2D hitCollider;
+    protected List<Collider2D> damaged;
     protected string attackType;
     protected int attackIndex;
 
@@ -19,10 +23,13 @@ public /*abstract*/ class MeleeBaseState : State
         base.OnEnter(_stateMachine);
         shouldCombo = false;
         animator = GetComponent<Animator>();
+        hitCollider = GetComponent<ComboCharacter>().hitbox;
+        damaged = new List<Collider2D>();
         while (playerInput == null)
         {
             playerInput = InputManager.playerInput;
         }
+        playerStats = CombatManager.playerStats;
         playerInput.Melee.Attack.performed += Combo;
         playerInput.Moving.Disable();
     }
@@ -52,14 +59,41 @@ public /*abstract*/ class MeleeBaseState : State
             playerInput.Moving.Jump.performed += StopCombo;
             playerInput.Melee.Dash.performed += StopCombo;
         }
+        if (animator.GetFloat("WeaponActive") > 0f)
+        {
+            Attack();
+        }
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        playerInput.Moving.Enable();
+        playerInput.Melee.Attack.performed -= Combo;
         playerInput.Moving.Move.performed -= StopCombo;
         playerInput.Moving.Jump.performed -= StopCombo;
         playerInput.Melee.Dash.performed -= StopCombo;
+    }
+
+    protected void Attack()
+    {
+        List<Collider2D> hits = new List<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.useTriggers = true;
+        _ = Physics2D.OverlapCollider(hitCollider, filter, hits);
+        foreach(Collider2D current in hits)
+        {
+            if (!damaged.Contains(current))
+            {
+                if (current.TryGetComponent<Enemy>(out var temp)) {
+                    Stats hitObjectStats = temp.stats;
+                    if (hitObjectStats.team == Team.Enemy)
+                    {
+                        playerStats.DealDamage(hitObjectStats);
+                        //Debug.Log("Dealer stats: " + playerStats + "\nReceiver stats: " + hitObjectStats);
+                        damaged.Add(current);
+                    }
+                }
+            }
+        }
     }
 }

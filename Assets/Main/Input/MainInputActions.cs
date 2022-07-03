@@ -273,15 +273,6 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RangedIn"",
-                    ""type"": ""Button"",
-                    ""id"": ""c46e221e-072d-442e-9ccc-cd201ee32348"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -328,28 +319,6 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""30459ec2-73e5-42d1-826f-4ff608a5c0be"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""RangedIn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""75446228-cf8d-4787-a248-0f5172f0c2f3"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RangedIn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -367,15 +336,6 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RangedOut"",
-                    ""type"": ""Button"",
-                    ""id"": ""ebcf6916-f404-4fc0-a7ce-b44f77e419f6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""RangedOutPause"",
                     ""type"": ""Button"",
                     ""id"": ""ede14665-af97-4742-8428-b243ab8b4e6c"",
@@ -383,6 +343,24 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShotDirectionM"",
+                    ""type"": ""Value"",
+                    ""id"": ""32a6aff3-3d17-454c-a3a3-250c7ea97ce9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ShotDirectionG"",
+                    ""type"": ""Value"",
+                    ""id"": ""d307d43d-9d6f-488e-b339-073bf1f1e931"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -410,23 +388,23 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c0023618-a5c3-41a6-82de-23410c977265"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""35efdcc3-a3e1-4a01-92a3-28117d6aa99f"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""RangedOut"",
+                    ""action"": ""ShotDirectionM"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5d0c4c40-065c-4a42-8402-7255595f62ff"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""id"": ""dbbb3e32-5204-470a-a842-3ed10520fdff"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""RangedOut"",
+                    ""action"": ""ShotDirectionG"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -449,6 +427,76 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""RangedOutPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""AlwaysActive"",
+            ""id"": ""808441f4-d4ec-4860-9148-71d2f5b4ed82"",
+            ""actions"": [
+                {
+                    ""name"": ""RangedModeSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""e18c0074-9a72-43fb-b393-851b6ec17b61"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeScheme"",
+                    ""type"": ""Button"",
+                    ""id"": ""29409c0d-b4f0-4068-8687-6b9496bb9837"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4a993285-faca-43f8-aece-81e2b8123adf"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RangedModeSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd18d45b-4066-4950-9878-2eceec2bee24"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""RangedModeSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db752c43-6db2-4b65-8e9f-47dc9118433c"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangeScheme"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7bfe33aa-1503-4278-899e-15feb90cdb56"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ChangeScheme"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -503,12 +551,16 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
         m_Melee = asset.FindActionMap("Melee", throwIfNotFound: true);
         m_Melee_Attack = m_Melee.FindAction("Attack", throwIfNotFound: true);
         m_Melee_Dash = m_Melee.FindAction("Dash", throwIfNotFound: true);
-        m_Melee_RangedIn = m_Melee.FindAction("RangedIn", throwIfNotFound: true);
         // Ranged
         m_Ranged = asset.FindActionMap("Ranged", throwIfNotFound: true);
         m_Ranged_Shoot = m_Ranged.FindAction("Shoot", throwIfNotFound: true);
-        m_Ranged_RangedOut = m_Ranged.FindAction("RangedOut", throwIfNotFound: true);
         m_Ranged_RangedOutPause = m_Ranged.FindAction("RangedOutPause", throwIfNotFound: true);
+        m_Ranged_ShotDirectionM = m_Ranged.FindAction("ShotDirectionM", throwIfNotFound: true);
+        m_Ranged_ShotDirectionG = m_Ranged.FindAction("ShotDirectionG", throwIfNotFound: true);
+        // AlwaysActive
+        m_AlwaysActive = asset.FindActionMap("AlwaysActive", throwIfNotFound: true);
+        m_AlwaysActive_RangedModeSwitch = m_AlwaysActive.FindAction("RangedModeSwitch", throwIfNotFound: true);
+        m_AlwaysActive_ChangeScheme = m_AlwaysActive.FindAction("ChangeScheme", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -718,14 +770,12 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
     private IMeleeActions m_MeleeActionsCallbackInterface;
     private readonly InputAction m_Melee_Attack;
     private readonly InputAction m_Melee_Dash;
-    private readonly InputAction m_Melee_RangedIn;
     public struct MeleeActions
     {
         private @MainInputActions m_Wrapper;
         public MeleeActions(@MainInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Attack => m_Wrapper.m_Melee_Attack;
         public InputAction @Dash => m_Wrapper.m_Melee_Dash;
-        public InputAction @RangedIn => m_Wrapper.m_Melee_RangedIn;
         public InputActionMap Get() { return m_Wrapper.m_Melee; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -741,9 +791,6 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_MeleeActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_MeleeActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_MeleeActionsCallbackInterface.OnDash;
-                @RangedIn.started -= m_Wrapper.m_MeleeActionsCallbackInterface.OnRangedIn;
-                @RangedIn.performed -= m_Wrapper.m_MeleeActionsCallbackInterface.OnRangedIn;
-                @RangedIn.canceled -= m_Wrapper.m_MeleeActionsCallbackInterface.OnRangedIn;
             }
             m_Wrapper.m_MeleeActionsCallbackInterface = instance;
             if (instance != null)
@@ -754,9 +801,6 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-                @RangedIn.started += instance.OnRangedIn;
-                @RangedIn.performed += instance.OnRangedIn;
-                @RangedIn.canceled += instance.OnRangedIn;
             }
         }
     }
@@ -766,15 +810,17 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Ranged;
     private IRangedActions m_RangedActionsCallbackInterface;
     private readonly InputAction m_Ranged_Shoot;
-    private readonly InputAction m_Ranged_RangedOut;
     private readonly InputAction m_Ranged_RangedOutPause;
+    private readonly InputAction m_Ranged_ShotDirectionM;
+    private readonly InputAction m_Ranged_ShotDirectionG;
     public struct RangedActions
     {
         private @MainInputActions m_Wrapper;
         public RangedActions(@MainInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shoot => m_Wrapper.m_Ranged_Shoot;
-        public InputAction @RangedOut => m_Wrapper.m_Ranged_RangedOut;
         public InputAction @RangedOutPause => m_Wrapper.m_Ranged_RangedOutPause;
+        public InputAction @ShotDirectionM => m_Wrapper.m_Ranged_ShotDirectionM;
+        public InputAction @ShotDirectionG => m_Wrapper.m_Ranged_ShotDirectionG;
         public InputActionMap Get() { return m_Wrapper.m_Ranged; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -787,12 +833,15 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_RangedActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_RangedActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_RangedActionsCallbackInterface.OnShoot;
-                @RangedOut.started -= m_Wrapper.m_RangedActionsCallbackInterface.OnRangedOut;
-                @RangedOut.performed -= m_Wrapper.m_RangedActionsCallbackInterface.OnRangedOut;
-                @RangedOut.canceled -= m_Wrapper.m_RangedActionsCallbackInterface.OnRangedOut;
                 @RangedOutPause.started -= m_Wrapper.m_RangedActionsCallbackInterface.OnRangedOutPause;
                 @RangedOutPause.performed -= m_Wrapper.m_RangedActionsCallbackInterface.OnRangedOutPause;
                 @RangedOutPause.canceled -= m_Wrapper.m_RangedActionsCallbackInterface.OnRangedOutPause;
+                @ShotDirectionM.started -= m_Wrapper.m_RangedActionsCallbackInterface.OnShotDirectionM;
+                @ShotDirectionM.performed -= m_Wrapper.m_RangedActionsCallbackInterface.OnShotDirectionM;
+                @ShotDirectionM.canceled -= m_Wrapper.m_RangedActionsCallbackInterface.OnShotDirectionM;
+                @ShotDirectionG.started -= m_Wrapper.m_RangedActionsCallbackInterface.OnShotDirectionG;
+                @ShotDirectionG.performed -= m_Wrapper.m_RangedActionsCallbackInterface.OnShotDirectionG;
+                @ShotDirectionG.canceled -= m_Wrapper.m_RangedActionsCallbackInterface.OnShotDirectionG;
             }
             m_Wrapper.m_RangedActionsCallbackInterface = instance;
             if (instance != null)
@@ -800,16 +849,60 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
-                @RangedOut.started += instance.OnRangedOut;
-                @RangedOut.performed += instance.OnRangedOut;
-                @RangedOut.canceled += instance.OnRangedOut;
                 @RangedOutPause.started += instance.OnRangedOutPause;
                 @RangedOutPause.performed += instance.OnRangedOutPause;
                 @RangedOutPause.canceled += instance.OnRangedOutPause;
+                @ShotDirectionM.started += instance.OnShotDirectionM;
+                @ShotDirectionM.performed += instance.OnShotDirectionM;
+                @ShotDirectionM.canceled += instance.OnShotDirectionM;
+                @ShotDirectionG.started += instance.OnShotDirectionG;
+                @ShotDirectionG.performed += instance.OnShotDirectionG;
+                @ShotDirectionG.canceled += instance.OnShotDirectionG;
             }
         }
     }
     public RangedActions @Ranged => new RangedActions(this);
+
+    // AlwaysActive
+    private readonly InputActionMap m_AlwaysActive;
+    private IAlwaysActiveActions m_AlwaysActiveActionsCallbackInterface;
+    private readonly InputAction m_AlwaysActive_RangedModeSwitch;
+    private readonly InputAction m_AlwaysActive_ChangeScheme;
+    public struct AlwaysActiveActions
+    {
+        private @MainInputActions m_Wrapper;
+        public AlwaysActiveActions(@MainInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RangedModeSwitch => m_Wrapper.m_AlwaysActive_RangedModeSwitch;
+        public InputAction @ChangeScheme => m_Wrapper.m_AlwaysActive_ChangeScheme;
+        public InputActionMap Get() { return m_Wrapper.m_AlwaysActive; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AlwaysActiveActions set) { return set.Get(); }
+        public void SetCallbacks(IAlwaysActiveActions instance)
+        {
+            if (m_Wrapper.m_AlwaysActiveActionsCallbackInterface != null)
+            {
+                @RangedModeSwitch.started -= m_Wrapper.m_AlwaysActiveActionsCallbackInterface.OnRangedModeSwitch;
+                @RangedModeSwitch.performed -= m_Wrapper.m_AlwaysActiveActionsCallbackInterface.OnRangedModeSwitch;
+                @RangedModeSwitch.canceled -= m_Wrapper.m_AlwaysActiveActionsCallbackInterface.OnRangedModeSwitch;
+                @ChangeScheme.started -= m_Wrapper.m_AlwaysActiveActionsCallbackInterface.OnChangeScheme;
+                @ChangeScheme.performed -= m_Wrapper.m_AlwaysActiveActionsCallbackInterface.OnChangeScheme;
+                @ChangeScheme.canceled -= m_Wrapper.m_AlwaysActiveActionsCallbackInterface.OnChangeScheme;
+            }
+            m_Wrapper.m_AlwaysActiveActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @RangedModeSwitch.started += instance.OnRangedModeSwitch;
+                @RangedModeSwitch.performed += instance.OnRangedModeSwitch;
+                @RangedModeSwitch.canceled += instance.OnRangedModeSwitch;
+                @ChangeScheme.started += instance.OnChangeScheme;
+                @ChangeScheme.performed += instance.OnChangeScheme;
+                @ChangeScheme.canceled += instance.OnChangeScheme;
+            }
+        }
+    }
+    public AlwaysActiveActions @AlwaysActive => new AlwaysActiveActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -850,12 +943,17 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
     {
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnRangedIn(InputAction.CallbackContext context);
     }
     public interface IRangedActions
     {
         void OnShoot(InputAction.CallbackContext context);
-        void OnRangedOut(InputAction.CallbackContext context);
         void OnRangedOutPause(InputAction.CallbackContext context);
+        void OnShotDirectionM(InputAction.CallbackContext context);
+        void OnShotDirectionG(InputAction.CallbackContext context);
+    }
+    public interface IAlwaysActiveActions
+    {
+        void OnRangedModeSwitch(InputAction.CallbackContext context);
+        void OnChangeScheme(InputAction.CallbackContext context);
     }
 }
