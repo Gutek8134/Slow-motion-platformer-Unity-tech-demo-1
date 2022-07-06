@@ -6,17 +6,17 @@ Day 1:
 2. Add basic movement using the new input system (because I'd have to learn it someday anyway) - Done (though it was mostly copied from Sidescroller, oh, well)
 
 Day 2:
-1. Add static "enemy", baically training dummy - Done
+1. Add static "enemy", basically training dummy - Done
 2. Add combat:
 a. melee - it just has to work - Done
-b. ranged - when entering target mode, slow time down (good luck with that one)
+b. ranged - when entering target mode, slow time down (good luck with that one) - Done (Yay!)
 
 Day 3:
 1. Add enemy behaviour
 2. Add UI (even though you should earlier):
 a. hp
 b. stats?
-c. abilities
+c. abilities?
 
 Backlog (AKA whenever):
 1. Advance movement (wall jumps, momentum, and so on)

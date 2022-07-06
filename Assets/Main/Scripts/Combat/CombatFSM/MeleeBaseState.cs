@@ -84,10 +84,11 @@ public /*abstract*/ class MeleeBaseState : State
         {
             if (!damaged.Contains(current))
             {
-                if (current.TryGetComponent<Enemy>(out var temp)) {
-                    Stats hitObjectStats = temp.stats;
+                if (current.TryGetComponent(out IDamageable hit)) {
+                    Stats hitObjectStats = hit.stats;
                     if (hitObjectStats.team == Team.Enemy)
                     {
+                        hit.UpdateHP();
                         playerStats.DealDamage(hitObjectStats);
                         //Debug.Log("Dealer stats: " + playerStats + "\nReceiver stats: " + hitObjectStats);
                         damaged.Add(current);

@@ -22,9 +22,9 @@ public class ArrowController : MonoBehaviour
         //Debug.Log("Triggered");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Entities") || collision.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
-            if (collision.TryGetComponent(out Enemy enemyComp))
+            if (collision.TryGetComponent(out IDamageable damageable))
             {
-                enemyComp.stats.ReceiveDamage(damage);
+                damageable.ReceiveDamage(damage);
             }
             Destroy(gameObject);
         }

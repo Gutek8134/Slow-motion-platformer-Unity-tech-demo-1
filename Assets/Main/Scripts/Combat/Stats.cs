@@ -42,7 +42,6 @@ public class Stats
     public void DealDamage(Stats target)
     {
         target.currentHP -= (int)Mathf.Clamp(damage - (target.armor - armorPen), 0f, float.MaxValue);
-        
     }
 
     public void ReceiveDamage(Stats source)
@@ -50,9 +49,9 @@ public class Stats
         currentHP -= (int)Mathf.Clamp(source.damage - (armor - source.armorPen), 0f, float.MaxValue);
     }
 
-    public void ReceiveDamage(int damage)
+    public void ReceiveDamage(int _damage)
     {
-        currentHP -= (int)Mathf.Clamp((damage - armor), 0f, float.MaxValue);
+        currentHP -= (int)Mathf.Clamp((_damage - armor), 0f, float.MaxValue);
     }
 
     public override string ToString()
