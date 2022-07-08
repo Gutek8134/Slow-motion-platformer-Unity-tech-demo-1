@@ -18,6 +18,7 @@ public class GroundAttackState3 : MeleeBaseState
     public override void OnUpdate()
     {
         base.OnUpdate();
+        //There's no attack to further extend the combo, so just wait for currrent attack to end and finish it
         if (time > duration)
         {
             stateMachine.SetNextStateToMain();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+///<summary>Everything commented in <see cref= "GroundAttackState1"/>. They are basically the same.</summary>
 public class GroundAttackState2 : MeleeBaseState
 {
     public override void OnEnter(CombatStateMachine _stateMachine)

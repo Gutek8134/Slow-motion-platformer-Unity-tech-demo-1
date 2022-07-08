@@ -3,14 +3,18 @@ using UnityEngine;
 public class CombatStateMachine: MonoBehaviour
 {
     public string customName;
+
     private State mainStateType;
-    public State CurrentState { get; private set; }
+    public State CurrentState { get; private set; }//Sometimes you just need to see these things
     private State nextState;
+
     private MainInputActions playerInput;
 
     private void Awake()
     {
+        //As everywhere, first goes setting up variables
         mainStateType = new IdleCombatState();
+        //Set current state to idle so I don't have to deal with null exceptions. ASAP
         SetNextStateToMain();
         while (playerInput == null)
         {
@@ -18,6 +22,7 @@ public class CombatStateMachine: MonoBehaviour
         }
     }
 
+//Region for calling update functions
     #region Updates
     private void Update()
     {
@@ -44,6 +49,8 @@ public class CombatStateMachine: MonoBehaviour
     }
     #endregion Updates
 
+    //Listeners are too expansive
+    ///<summary>Switches states, simultaneously calling their OnEnter and OnExit functions</summary>
     private void SetState(State _nextState)
     {
         if (CurrentState != null)
@@ -64,9 +71,10 @@ public class CombatStateMachine: MonoBehaviour
             nextState = mainStateType;
     }
 
+//I could use a ToString for that, but whatever
     private void PrintStates()
     {
-        Debug.Log("c: " + CurrentState);
-        Debug.Log("n: " + nextState);
+        Debug.Log("Current: " + CurrentState);
+        Debug.Log("Next: " + nextState);
     }
 }

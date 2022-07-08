@@ -30,10 +30,17 @@ public class GroundAttackState1 : MeleeBaseState
             Debug.Log("Combo frame stop");
         }*/
 
+        //If you extended combo, it's time to execute it
         if (time > duration && time < comboFramesStop && shouldCombo)
         {
             stateMachine.SetNextState(new GroundAttackState2());
         }
+        //Threw "&& !shouldCombo" out, because if it's already past cFS time, then time is surely greater than duration
+        //That means this part fires when:
+        //cFS < time < duration && something => always false, because cFS>duration
+        //duration < time > cFS && !should combo => right what I need
+        //
+        //Still, black magic code
         else if(time > comboFramesStop)
         {
             stateMachine.SetNextStateToMain();

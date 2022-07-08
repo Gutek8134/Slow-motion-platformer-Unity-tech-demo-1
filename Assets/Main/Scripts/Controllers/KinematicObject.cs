@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Change to us real physics alongside with child classes
+//Current child classes:
+//SidescrollerController
+
 public class KinematicObject : MonoBehaviour
 {
     /// <summary>

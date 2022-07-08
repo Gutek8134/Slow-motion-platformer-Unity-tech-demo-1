@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+///<summary>Basic enemy class other should derive from</summary>
 public class Enemy : MonoBehaviour, IDamageable
 {
     public Stats stats {get; set;}
@@ -26,6 +27,9 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     public void UpdateHP(){
+        //If you have some text to display, use it to output data in format:
+        //Name: Current HP/Max HP
         if(nameComp != null) nameComp.text = $"{name}: {stats.currentHP}/{stats.maxHp}";
+        //TODO: Update health bar fill
     }
 }

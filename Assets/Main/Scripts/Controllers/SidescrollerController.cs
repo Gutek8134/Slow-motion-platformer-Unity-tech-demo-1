@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+//TODO: Change to Physics alongside with parent class
 public class SidescrollerController : KinematicObject
 {
     /// <summary>

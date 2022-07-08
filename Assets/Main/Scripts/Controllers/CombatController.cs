@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//!Deprecated class for Coroutine-based system. Currently using FSM to manage that.
+///<summary>Unused class. At this moment combat is managed by <see cref="CombatStateMachine"/></summary>
 public class CombatController : MonoBehaviour
 {
     [SerializeField] Transform pointOfDamage;
@@ -20,12 +22,14 @@ public class CombatController : MonoBehaviour
         sidescrollerController = GetComponent<SidescrollerController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
-        playerInput = new MainInputActions();
+        playerInput = InputManager.playerInput;
         playerInput.Melee.Enable();
     }
 
     private void OnDrawGizmos()
     {
+        //In case new method ends up too resource demanding, used to determine the right values for hit areas
+        //It's a lot easier to use the other method doe
         Gizmos.color = Color.red;
         if (pointOfDamage != null)
         {
