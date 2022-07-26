@@ -1,5 +1,41 @@
 {
     "cSpell.words": [
-        "Dont"
-    ]
+        "Dont",
+        "Mathf",
+        "Pathfinding"
+    ],
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "keyword.type.cs",
+                "settings": {
+                    "foreground": "#9872A2"
+                }
+            },
+            {
+                "scope": "entity.name.type.cs",
+                "settings": {
+                    "foreground": "#0f8148",
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "scope": ["keyword.other.new.cs", "keyword.other.this.cs"],
+                "settings": {
+                    "foreground": "#1e9b39",
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "scope": "entity.name.function.cs",
+                "settings": {
+                    "foreground": "#20b9b2"
+                }
+            }
+        ]
+    },
+    // Enable per-language
+    "[csharp]": {
+        "editor.formatOnSave": true
+    }
 }

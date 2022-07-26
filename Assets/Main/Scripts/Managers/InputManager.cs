@@ -48,6 +48,7 @@ public static class InputManager
 
         //Start listening for changing devices
         ListenForDeviceChange();
+
     } 
 
     ///<summary>Disables any form of combat input</summary>

@@ -12,7 +12,7 @@ public class ComboCharacter : MonoBehaviour
     private MainInputActions playerInput;
     public Stats playerStats;
 
-    void Awake()
+    void Start()
     {
         //Initializing values, yay!
         CombatManager.EnterCombatArea();
@@ -44,7 +44,7 @@ public class ComboCharacter : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Cannot enter ranged mode here");
+                    Debug.Log("Cannot enter ranged mode here" + stateMachine.CurrentState + CombatManager.canEnterRanged);
                 }
             }
             else
@@ -55,5 +55,6 @@ public class ComboCharacter : MonoBehaviour
             //This line explains the whole idea of function
             InputManager.isRanged = !InputManager.isRanged;
         };
+
     }
 }

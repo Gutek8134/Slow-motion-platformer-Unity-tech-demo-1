@@ -12,7 +12,7 @@ public enum Team: sbyte
 }
 
 ///<summary>Holds statistics for every entity, required in classes contracting <c>IDamageable</c></summary>
-///<remarks>Not made an enum to be able to catch errors in other classes by <c>null</c> comparison</remarks>
+///<remarks>Not made a struct to be able to catch errors in other classes by <c>null</c> comparison</remarks>
 [System.Serializable]
 public class Stats
 {
@@ -40,7 +40,7 @@ public class Stats
     
     public void DealDamage(Stats target)
     {
-        target.currentHP -= (int)Mathf.Clamp(damage - (target.armor - armorPen), 1f, float.MaxValue);
+        target.ReceiveDamage(this);
     }
 
     public void ReceiveDamage(Stats source)

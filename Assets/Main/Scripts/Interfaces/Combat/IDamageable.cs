@@ -7,10 +7,6 @@ public interface IDamageable
     ///<value>Damageable object's stats</value>
     Stats stats {get; set;}
 
-    ///<value>Health bar object</value>
-    //TODO: Change it to slider?
-    GameObject HealthBar {get; set;}
-
     ///<summary>For managing UI aspect of receiving damage</summary>
     void ReceiveDamage(Stats source);
 
@@ -19,5 +15,6 @@ public interface IDamageable
 
     ///<summary>For updating Health bar</summary>
     void UpdateHP();
-    
+
+    void Die();    
 }

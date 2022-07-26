@@ -109,12 +109,10 @@ public /*abstract*/ class MeleeBaseState : State
                 //If it is also damageable:
                 //(I hope this spaghetti improves the performance)
                 if (current.TryGetComponent(out IDamageable hit)) {
-                    //Take its stats
-                    Stats hitObjectStats = hit.stats;
                     //And deal damage if it is an enemy
-                    if (hitObjectStats.team == Team.Enemy)
+                    if (hit.stats.team == Team.Enemy)
                     {
-                        playerStats.DealDamage(hitObjectStats);//Maybe I should change everything to Receive so I won't have to deal with updating?
+                        hit.ReceiveDamage(playerStats);//Maybe I should change everything to Receive so I won't have to deal with updating?
                         hit.UpdateHP();
                         //Debug.Log("Dealer stats: " + playerStats + "\nReceiver stats: " + hitObjectStats);
                         damaged.Add(current);//This prevents attacking same target twice with one attack
