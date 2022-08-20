@@ -5,14 +5,14 @@ using UnityEngine;
 ///<summary>Holder class for everything UI-related</summary>
 public static class UIManager
 {
-    public static GameObject hands, crosshair;
-    ///<value><see cref="GameManager.distanceToCrosshair"/></value>
-    public static float distanceToCrosshair;
-    public static void Instantiate()
-    {
+    public static GameObject hands,
+        crosshair;
 
-    }
-    
+    ///<value> Information at <see cref="GameManager.distanceToCrosshair"/></value>
+    public static float distanceToCrosshair;
+
+    public static void Instantiate() { }
+
     ///<summary>Manages UI aspect of entering Ranged Mode</summary>
     public static void EnterRanged()
     {
@@ -26,4 +26,6 @@ public static class UIManager
         hands.SetActive(false);
         crosshair.SetActive(false);
     }
+
+    public static void PlayerDied() { }
 }

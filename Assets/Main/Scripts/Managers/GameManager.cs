@@ -7,19 +7,23 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     ///<value>Ranged Mode-related GameObjects</value>
-    [SerializeField] GameObject hands, crosshair;
-    ///<value>Value used for adjusting distance between hands and crosshair</value>
-    [SerializeField] float distanceToCrosshair = 2;
-    ///<value>Reference to currently used camera</value>
-    [SerializeField] new Camera camera;
+    [SerializeField]
+    GameObject hands,
+        crosshair;
 
-    ///<value>Combat Manager related GameObjects</value>
-    [SerializeField] GameObject player, arrowPrefab;
-    
-    ///<value>Player's stats</value>
-    //TODO: change it to read Stats from JSON
-    [SerializeField] int maxHp, damage, armor, armorPen;
-    
+    ///<value>Value used for adjusting distance between hands and crosshair</value>
+    [SerializeField]
+    float distanceToCrosshair = 2;
+
+    ///<value>Reference to currently used camera</value>
+    [SerializeField]
+    new Camera camera;
+
+    ///<value>Combat Manager related GameObject</value>
+    [SerializeField]
+    GameObject player,
+        arrowPrefab;
+
     void Awake()
     {
         //At first, make sure the process won't be interrupted by changing scenes
@@ -27,7 +31,7 @@ public class GameManager : MonoBehaviour
         //Secondly, call other Managers' methods for setting their values
         TimeManager.Instantiate();
         InputManager.Instantiate(camera);
-        CombatManager.Instantiate(player, new Stats(maxHp, damage, armor, armorPen, Team.Player), arrowPrefab);
+        CombatManager.Instantiate(player, arrowPrefab);
         UIManager.Instantiate();
 
         //UIManager is treated specially, because it may have way too many values to set in one function call

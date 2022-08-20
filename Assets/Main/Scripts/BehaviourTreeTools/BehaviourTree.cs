@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BehaviourTreeNS{
+namespace BehaviourTreeNS
+{
     public abstract class BehaviourTree : MonoBehaviour
     {
-        public Node root = null;
+        public Node root { get; private set; } = null;
+
         ///<summary>Holds the interval between changing current state</summary>
-        [SerializeField] protected float interval = 1/40;
+        [SerializeField]
+        protected float interval = 1 / 40;
+
         ///<summary>Tells whether tree should use coroutines or updates for running the logic.
         ///true means coroutines, false is for updates</summary>
-        [SerializeField] bool coroutineSwitch = false;
+        [SerializeField]
+        bool coroutineSwitch = false;
 
         protected virtual void Start()
         {
             root = SetupTree();
-            if(coroutineSwitch)
+            if (coroutineSwitch)
             {
                 StartCoroutine(RunTree());
             }
@@ -23,7 +28,7 @@ namespace BehaviourTreeNS{
 
         protected virtual void Update()
         {
-            if(!coroutineSwitch && root != null)
+            if (!coroutineSwitch && root != null)
             {
                 root.Run();
             }
@@ -31,7 +36,7 @@ namespace BehaviourTreeNS{
 
         protected virtual void FixedUpdate()
         {
-            if(!coroutineSwitch && root != null)
+            if (!coroutineSwitch && root != null)
             {
                 root.FixedRun();
             }
@@ -39,7 +44,7 @@ namespace BehaviourTreeNS{
 
         private IEnumerator RunTree()
         {
-            if(root != null)
+            if (root != null)
             {
                 root.Run();
                 yield return new WaitForSeconds(interval);

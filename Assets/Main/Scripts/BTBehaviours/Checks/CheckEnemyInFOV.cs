@@ -21,11 +21,12 @@ public class CheckEnemyInFOV : Node
     public override NodeState Run()
     {
         //!Directives and final return are included to make debug easier
-
+        if (!ComboCharacter.lives)
+            return NodeState.Failure;
         //Checks if target was already set
-        Transform target = (Transform) GetData("target");
-        if(target == null)
-        {   
+        Transform target = (Transform)GetData("target");
+        if (target == null)
+        {
             //If it wasn't, check for colliders in the area
             Collider2D[] colliders = Physics2D.OverlapCircleAll(
                 transform.position,
@@ -41,29 +42,28 @@ public class CheckEnemyInFOV : Node
                     caller.root.SetData("target", collider.transform);
                     state = NodeState.Success;
 
-                    #if !UNITY_EDITOR
+#if !UNITY_EDITOR
                     return state;
-                    #endif
+#endif
                 }
             }
 
             //If none of them were the player, return false
-            if(state != NodeState.Success)
+            if (state != NodeState.Success)
             {
                 state = NodeState.Failure;
-                #if !UNITY_EDITOR
+#if !UNITY_EDITOR
                 return state;
-                #endif
+#endif
             }
-            
         }
         else
         {
             //If the target is set, checks if its a transform and then if the distance between enemy and player is
             //lesser than previously set, returns success, failure otherwise
-            if(target.GetType() == typeof(Transform))
+            if (target.GetType() == typeof(Transform))
             {
-                if(Vector2.Distance(transform.position, target.position) < chaseDist)
+                if (Vector2.Distance(transform.position, target.position) < chaseDist)
                 {
                     state = NodeState.Success;
                 }

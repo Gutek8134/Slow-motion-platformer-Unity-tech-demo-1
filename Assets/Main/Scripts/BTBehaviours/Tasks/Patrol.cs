@@ -26,7 +26,7 @@ public class Patrol : Node
 
     public override NodeState Run()
     {
-        if(isWaiting)
+        if (isWaiting)
         {
             //If you are waiting, wait until you've waited enough
             waitCounter += Time.deltaTime;
@@ -40,9 +40,10 @@ public class Patrol : Node
             //Get the next point you should go to
             Transform wp = waypoints[currentWaypointIndex];
             //If the distance is very small, teleport your ass there and start waiting
-            if(Vector2.Distance(transform.position, wp.position) <= 0.01f)
+            if (Vector2.Distance(transform.position, wp.position) <= 0.1f)
             {
                 transform.position = wp.position;
+                caller.rigidbody2d.velocity *= 0;
                 waitCounter = 0f;
                 isWaiting = true;
 
@@ -52,8 +53,9 @@ public class Patrol : Node
             //If the distance is not that small, move in the general direction
             else
             {
-                //TODO: change to pathfinder
-                transform.position = Vector2.MoveTowards(transform.position, wp.position, caller.speed * Time.deltaTime);
+                caller.rigidbody2d.AddForce(
+                    (wp.position - transform.position).normalized * caller.speed
+                );
             }
         }
         //You can't stop patrolling, can you?

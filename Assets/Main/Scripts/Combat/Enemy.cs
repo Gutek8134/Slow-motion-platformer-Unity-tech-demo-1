@@ -10,21 +10,41 @@ using Pathfinding;
 [RequireComponent(typeof(Seeker))]
 public class Enemy : BehaviourTree, IDamageable
 {
-    public Stats stats {get; set;}
-    ///<value>Health bar object</value>
-    [SerializeField] GameObject healthCanvas;
-    [SerializeField] Slider healthBar;
-    [SerializeField] Image fill;
-    [SerializeField] Gradient healthBarColor;
-    [SerializeField] int maxHp, damage, armor, armorPen;
-    [SerializeField] TMP_Text nameComp;
-    [SerializeField] Transform[] patrolPath;
-    [SerializeField] LayerMask mask = default;
+    public Stats stats { get; set; }
 
+    ///<value>Health bar object</value>
+    [SerializeField]
+    GameObject healthCanvas;
+
+    [SerializeField]
+    Slider healthBar;
+
+    [SerializeField]
+    Image fill;
+
+    [SerializeField]
+    Gradient healthBarColor;
+
+    [SerializeField]
+    int maxHp,
+        damage,
+        armor,
+        armorPen;
+
+    [SerializeField]
+    TMP_Text nameComp;
+
+    [SerializeField]
+    Transform[] patrolPath;
+
+    [SerializeField]
+    LayerMask mask = default;
 
     #region BTData
     public float speed = 5;
     public float nextWaypointDistance = 0.02f;
+    public float attackDistance = 0.05f;
+    public float attackSpeed;
     public float repathTime = 0.5f;
     public float lookRange = 1.2f;
     public float chaseDist = 5f;
@@ -41,51 +61,83 @@ public class Enemy : BehaviourTree, IDamageable
         seeker = GetComponent<Seeker>();
     }
 
-    public void ReceiveDamage(Stats source){
+    public void ReceiveDamage(Stats source)
+    {
         stats.ReceiveDamage(source);
         UpdateHP();
 
-        if(stats.currentHP <=0){
-            Die();
+        if (stats.currentHP <= 0)
+        {
+            Die(source);
         }
     }
 
-    public void ReceiveDamage(int _damage){
+    public void ReceiveDamage(int _damage)
+    {
         stats.ReceiveDamage(_damage);
         UpdateHP();
 
-        if(stats.currentHP <=0){
+        if (stats.currentHP <= 0)
+        {
             Die();
         }
     }
 
-    public void UpdateHP(){
-        if(!healthCanvas.activeSelf)
+    public void UpdateHP()
+    {
+        if (!healthCanvas.activeSelf)
             healthCanvas.SetActive(true);
         //If you have some text to display, use it to output data in format:
         //Name: Current HP/Max HP
-        if(nameComp != null) nameComp.text = $"{name}: {stats.currentHP}/{stats.maxHp}";
+        if (nameComp != null)
+            nameComp.text = $"{name}: {stats.currentHP}/{stats.maxHp}";
 
         //Updating fill and color of heath bar
-        if(healthBar != null)
+        if (healthBar != null)
         {
-            healthBar.value = (float) stats.currentHP/stats.maxHp;
+            healthBar.value = (float)stats.currentHP / stats.maxHp;
             fill.color = healthBarColor.Evaluate(healthBar.value);
         }
     }
 
-    public void Die(){
+    public void Die(Stats source)
+    {
+        source.Heal((int)stats.maxHp / 3);
+        CombatManager.player.GetComponent<ComboCharacter>().UpdateHP();
         Destroy(gameObject);
     }
 
-    protected override Node SetupTree(){
-        return
-        new Selector( new List<Node>(){
-            new Sequence( new List<Node>(){
-                new CheckEnemyInFOV(this, transform, mask),
-                new Chase(this, transform),
-                }),
-            new Patrol(this, transform, patrolPath),
-            });
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    protected override Node SetupTree()
+    {
+        return new Selector(
+            new List<Node>()
+            {
+                new Selector(
+                    new List<Node>()
+                    {
+                        new Sequence(
+                            new List<Node>()
+                            {
+                                new CheckEnemyInAttackRange(this),
+                                new AttackPlayer(this),
+                            }
+                        ),
+                        new Sequence(
+                            new List<Node>()
+                            {
+                                new CheckEnemyInFOV(this, transform, mask),
+                                new Chase(this, transform),
+                            }
+                        )
+                    }
+                ),
+                new Patrol(this, transform, patrolPath),
+            }
+        );
     }
 }

@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: Change to us real physics alongside with child classes
-//Current child classes:
-//SidescrollerController
-
 public class KinematicObject : MonoBehaviour
 {
     /// <summary>
@@ -37,7 +33,6 @@ public class KinematicObject : MonoBehaviour
 
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
-
 
     /// <summary>
     /// Bounce the object's vertical velocity.
@@ -93,10 +88,7 @@ public class KinematicObject : MonoBehaviour
         ComputeVelocity();
     }
 
-    protected virtual void ComputeVelocity()
-    {
-
-    }
+    protected virtual void ComputeVelocity() { }
 
     protected virtual void FixedUpdate()
     {
@@ -121,7 +113,6 @@ public class KinematicObject : MonoBehaviour
         move = Vector2.up * deltaPosition.y;
 
         PerformMovement(move, true);
-
     }
 
     void PerformMovement(Vector2 move, bool yMovement)
@@ -170,5 +161,82 @@ public class KinematicObject : MonoBehaviour
         }
         body.position = body.position + move.normalized * distance;
     }
+}
 
+public class DynamicObject : MonoBehaviour
+{
+    public Vector2 targetVelocity;
+    public Vector2 move;
+
+    /// <summary>
+    /// Is the entity currently sitting on a surface?
+    /// </summary>
+    /// <value></value>
+    public bool IsGrounded { get; protected set; }
+
+    protected Rigidbody2D body;
+
+    /// <summary>
+    /// Bounce a set meters up
+    /// </summary>
+    /// <param name="meters"></param>
+    public void Bounce(float meters)
+    {
+        Vector3 force = body.mass * Physics2D.gravity * body.gravityScale * meters / 10;
+        body.AddForce(-force, ForceMode2D.Impulse);
+    }
+
+    /// <summary>
+    /// Bounce the object's force in a direction.
+    /// </summary>
+    /// <param name="dir">target velocity</param>
+    public void Bounce(Vector2 dir)
+    {
+        body.AddForce(dir);
+    }
+
+    /// <summary>
+    /// Teleport to some position.
+    /// </summary>
+    /// <param name="position"></param>
+    public void Teleport(Vector3 position)
+    {
+        body.position = position;
+        body.velocity *= 0;
+    }
+
+    protected virtual void Start()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    protected virtual void Update()
+    {
+        targetVelocity = Vector2.zero;
+        ComputeVelocity();
+    }
+
+    protected virtual void ComputeVelocity() { }
+
+    protected virtual void FixedUpdate() { }
+
+    protected void PerformMovement(Vector2 desiredSpeed)
+    {
+        int dir = desiredSpeed.normalized.x < 0 ? -1 : 1;
+        Vector3 forwardSpeed = body.transform.right * desiredSpeed;
+        Vector3 force =
+            forwardSpeed.normalized * body.mass * body.gravityScale * desiredSpeed * dir;
+        body.AddForce(force);
+    }
+
+    /*
+    public void BounceToPos(Vector2 dir)
+    {
+        float yForce = body.mass * Physics2D.gravity * body.gravityScale * dir.y;
+        float t = 2 * dir.y/;
+        float xForce = (2 * body.mass * dir.x) / (t * t);
+        Vector2 force = new Vector2(F, yForce);
+        body.AddForce(force, ForceMode2D.Impulse);
+    }
+    */
 }

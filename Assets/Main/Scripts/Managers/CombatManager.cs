@@ -6,19 +6,24 @@ using UnityEngine;
 public static class CombatManager
 {
     ///<value>Holds player statistics</value>
-    public static Stats playerStats { get; private set; }
+    public static Stats playerStats
+    {
+        get => player.GetComponent<ComboCharacter>().playerStats;
+    }
+
     ///<value>Holds the player itself</value>
     public static GameObject player = null;
+
     ///<value>Used to determine whether player can or cannot enter ranged mode at given moment</value>
     public static bool canEnterRanged;
+
     ///<value>Prefab for arrow to use in RangedMode, since it cannot be defined there</value>
     public static GameObject arrowPrefab;
 
     ///<summary>Sets values for the class</summary>
-    public static void Instantiate(GameObject _player, Stats stats, GameObject _arrowPrefab)
+    public static void Instantiate(GameObject _player, GameObject _arrowPrefab)
     {
         player = _player;
-        playerStats = stats;
         arrowPrefab = _arrowPrefab;
     }
 
